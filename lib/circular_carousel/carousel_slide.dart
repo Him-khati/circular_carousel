@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:carousel_flutter/colors.dart';
+import 'package:carousel_flutter/utils/screen_size_util.dart';
 import 'package:flutter/material.dart';
 
 import 'carousel_slide_placement_data.dart';
@@ -47,11 +48,13 @@ class CarousalSlideWidget extends StatelessWidget {
     // print("Ops Left ${data.index} : $slideLeftOpc");
     // print("Ops Mid ${data.index} : $slideMidOpc");
     // print("Ops Right ${data.index} : $slideRightOpc");
+    print(ScreenSizeUtil.getScreenHeight(context));
+    print(ScreenSizeUtil.getScreenWidth(context));
 
     return SizedBox(
       key: Key("image${data.index}"),
-      height: 450,
-      width: 300,
+      height: ScreenSizeUtil.getScreenHeight(context) * 0.5,
+      width: ScreenSizeUtil.getScreenWidth(context) * 0.18,
       child: ShaderMask(
         shaderCallback: (bounds) {
           return LinearGradient(

@@ -1,7 +1,13 @@
 # carousel_flutter
 Flutter Carousel
 
-## Getting Started
+Here is a video demonstration: 
+
+
+Uploading carousel_recording.mp4…
+
+
+
 
 What should you know to understand this carousel
 - Transform Widget

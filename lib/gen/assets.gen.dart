@@ -12,10 +12,6 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/abstract_wallpaper_image.jpg
-  AssetGenImage get abstractWallpaperImage =>
-      const AssetGenImage('assets/images/abstract_wallpaper_image.jpg');
-
   /// File path: assets/images/brian.png
   AssetGenImage get brian => const AssetGenImage('assets/images/brian.png');
 
@@ -40,16 +36,8 @@ class $AssetsImagesGen {
   AssetGenImage get yoshi => const AssetGenImage('assets/images/yoshi.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [
-        abstractWallpaperImage,
-        brian,
-        hilaichi,
-        jinKazama,
-        nina,
-        paul,
-        xiaoyo,
-        yoshi
-      ];
+  List<AssetGenImage> get values =>
+      [brian, hilaichi, jinKazama, nina, paul, xiaoyo, yoshi];
 }
 
 class Assets {

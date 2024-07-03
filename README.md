@@ -3,11 +3,10 @@ Flutter Carousel
 
 Here is a video demonstration: 
 
-
-Uploading carousel_recording.mp4…
-
+https://github.com/Him-khati/circular_carousel/assets/11491884/7b1f538f-e18c-4e48-90c9-2145ef31968e
 
 
+Design Inpiration : https://dribbble.com/shots/24094659-Felix-Koenig-Carousel-Animation
 
 What should you know to understand this carousel
 - Transform Widget
@@ -15,7 +14,3 @@ What should you know to understand this carousel
 
 - Matrix4 and how to use Matrix4 to transform widgets
   https://medium.com/flutter-community/advanced-flutter-matrix4-and-perspective-transformations-a79404a0d828
-
-
-Concept
-- How to use sin, cos to place widget in a circle

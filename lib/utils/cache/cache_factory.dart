@@ -12,8 +12,7 @@ class CacheFactory<T> {
         if (boxName == null) throw ArgumentError('boxName required for disk cache');
         return DiskCacheManager<T>(boxName);
       case CacheStrategy.both:
-        // For demonstration, return in-memory. You can implement a hybrid manager if needed.
-        return InMemoryCacheManager<T>();
+        throw UnsupportedError('Hybrid in-memory and disk caching is not yet supported.');
     }
   }
 }

@@ -7,6 +7,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'gen/assets.gen.dart';
+import 'utils/cache_manager.dart';
+import 'utils/cache_demo_viewmodel.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,6 +42,44 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   CarouselSlideData? slideInfo;
+
+  // Add cache demo ViewModel
+  late final CacheDemoViewModel cacheDemoViewModel;
+  String cacheDemoResult = '';
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    final memoryCache = InMemoryCache();
+    final diskCache = DiskCache();
+    cacheDemoViewModel = CacheDemoViewModel(
+      CombinedCacheManager(memoryCache: memoryCache, diskCache: diskCache),
+    );
+  }
+
+  Future<void> _getData() async {
+    setState(() => isLoading = true);
+    final result = await cacheDemoViewModel.getData();
+    setState(() {
+      cacheDemoResult = result;
+      isLoading = false;
+    });
+  }
+
+  Future<void> _invalidateCache() async {
+    await cacheDemoViewModel.invalidateCache();
+    setState(() {
+      cacheDemoResult = 'Cache invalidated!';
+    });
+  }
+
+  Future<void> _clearAllCache() async {
+    await cacheDemoViewModel.clearAllCache();
+    setState(() {
+      cacheDemoResult = 'All cache cleared!';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,6 +146,34 @@ class _MyHomePageState extends State<MyHomePage> {
               slideInfo?.subtitle ?? "Karate in Mishima style", //TODO fix this hardcoded text
               style: Theme.of(context).textTheme.headlineSmall,
             ),
+            const SizedBox(height: 32),
+            // --- Cache Demo UI ---
+            Text('Cache Demo', style: Theme.of(context).textTheme.titleLarge),
+            const SizedBox(height: 8),
+            if (isLoading) const CircularProgressIndicator(),
+            if (!isLoading) ...[
+              Text(cacheDemoResult, key: const Key('cacheDemoResult')),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: _getData,
+                    child: const Text('Get Data'),
+                  ),
+                  const SizedBox(width: 8),
+                  ElevatedButton(
+                    onPressed: _invalidateCache,
+                    child: const Text('Invalidate Cache'),
+                  ),
+                  const SizedBox(width: 8),
+                  ElevatedButton(
+                    onPressed: _clearAllCache,
+                    child: const Text('Clear All'),
+                  ),
+                ],
+              ),
+            ],
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
